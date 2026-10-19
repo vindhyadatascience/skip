@@ -33,7 +33,7 @@ if (env["SKIPLOCAL"] != nil || env["PWD"]?.hasSuffix("skipstone") == true) {
     package.targets += [.executableTarget(name: "skip", dependencies: [.product(name: "SkipBuild", package: "skipstone")])]
 } else {
     #if os(macOS)
-    package.targets += [.binaryTarget(name: "skip", url: "https://github.com/skiptools/skip/releases/download/1.9.12/skip-macos.zip", checksum: "b9627f129b0ed81b66cc19fe2da15127b9854d4685079fe42c12e90e6017fa57")]
+    package.targets += [.binaryTarget(name: "skip", url: "https://github.com/vindhyadatascience/skipstone/releases/download/1.9.12-vds.1/skip-macos.zip", checksum: "4ef539f28223dee2f1e783e114c8d536c9be748fabb3c92a7d94efe7425b099e")]
     #elseif os(Linux)
     package.targets += [.binaryTarget(name: "skip", url: "https://github.com/skiptools/skip/releases/download/1.9.12/skip-linux.zip", checksum: "2e3f36c75a29ba8277732bc92df2c37ccb0aebcec78dd5672481c558becdf236")]
     #else
