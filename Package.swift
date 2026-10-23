@@ -14,12 +14,14 @@ let package = Package(
     products: [
         .plugin(name: "skipstone", targets: ["skipstone"]),
         .plugin(name: "skiplink", targets: ["Create SkipLink"]),
+        .plugin(name: "skiptranspile", targets: ["Skip Transpile"]),
         .library(name: "SkipDrive", targets: ["SkipDrive"]),
         .library(name: "SkipTest", targets: ["SkipTest"]),
     ],
     targets: [
         .plugin(name: "skipstone", capability: .buildTool(), dependencies: ["skip"], path: "Plugins/SkipPlugin"),
         .plugin(name: "Create SkipLink", capability: .command(intent: .custom(verb: "SkipLink", description: "Create local links to transpiled output"), permissions: [.writeToPackageDirectory(reason: "This command will create local links to the skipstone output for the specified package(s), enabling access to the transpiled Kotlin")]), dependencies: ["skip"], path: "Plugins/SkipLink"),
+        .plugin(name: "Skip Transpile", capability: .command(intent: .custom(verb: "skip-transpile", description: "Transpile the Skip modules without building them"), permissions: [.writeToPackageDirectory(reason: "This command writes the transpiled output to the package's .build/plugins/outputs folder")]), dependencies: ["skip"], path: "Plugins/SkipTranspile"),
         .target(name: "SkipDrive", dependencies: ["skipstone", .target(name: "skip")]),
         .target(name: "SkipTest", dependencies: [.target(name: "SkipDrive", condition: .when(platforms: [.macOS, .macCatalyst, .linux]))]),
         .testTarget(name: "SkipTestTests", dependencies: ["SkipTest"]),
@@ -33,11 +35,11 @@ if (env["SKIPLOCAL"] != nil || env["PWD"]?.hasSuffix("skipstone") == true) {
     package.targets += [.executableTarget(name: "skip", dependencies: [.product(name: "SkipBuild", package: "skipstone")])]
 } else {
     #if os(macOS)
-    package.targets += [.binaryTarget(name: "skip", url: "https://github.com/vindhyadatascience/skipstone/releases/download/1.9.16-vds.1/skip-macos.zip", checksum: "f37161ffeb236e2fcf9f8fdce8ff15c0081d887d3bbf154cad252ed3de0bfcb5")]
+    package.targets += [.binaryTarget(name: "skip", url: "https://github.com/vindhyadatascience/skipstone/releases/download/1.9.19-vds.1/skip-macos.zip", checksum: "b9e83ef051f743a750a5f7a925c0e11e98e9c496aa8889438853b7b1ddf2324c")]
     #elseif os(Linux)
-    package.targets += [.binaryTarget(name: "skip", url: "https://github.com/skiptools/skip/releases/download/1.9.16/skip-linux.zip", checksum: "9ffc34959e0fbfedbc7bc2f004ee7012b0b629d5d41f31ecb68dd84050e75cbe")]
+    package.targets += [.binaryTarget(name: "skip", url: "https://github.com/skiptools/skip/releases/download/1.9.19/skip-linux.zip", checksum: "2f71b8d865f25815b607ded9e989acebaf4a2bbb7a9d3ef118816fb9a529e790")]
     #else
-    package.dependencies += [.package(url: "https://github.com/skiptools/skipstone.git", exact: "1.9.16")]
+    package.dependencies += [.package(url: "https://github.com/skiptools/skipstone.git", exact: "1.9.19")]
     package.targets += [.executableTarget(name: "skip", dependencies: [.product(name: "SkipBuild", package: "skipstone")])]
     #endif
 }
