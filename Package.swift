@@ -35,11 +35,11 @@ if (env["SKIPLOCAL"] != nil || env["PWD"]?.hasSuffix("skipstone") == true) {
     package.targets += [.executableTarget(name: "skip", dependencies: [.product(name: "SkipBuild", package: "skipstone")])]
 } else {
     #if os(macOS)
-    package.targets += [.binaryTarget(name: "skip", url: "https://github.com/vindhyadatascience/skipstone/releases/download/1.9.19-vds.5/skip-macos.zip", checksum: "de6b2bf198f4167ed7ece09955c4cd6e675bf3bb180efa1c4afc85cf9d29532a")]
+    package.targets += [.binaryTarget(name: "skip", url: "https://github.com/vindhyadatascience/skipstone/releases/download/1.9.19-vds.6/skip-macos.zip", checksum: "87e596f026c5064c1de5fed1f7532d15d45a9ba83581b74c4c315e56f9ad2e50")]
     #elseif os(Linux)
-    package.targets += [.binaryTarget(name: "skip", url: "https://github.com/vindhyadatascience/skipstone/releases/download/1.9.19-vds.5/skip-linux.zip", checksum: "f42c46fa2cdb33d1dbf301fe0b69b057295dee76cd9e204870ffe68fded0be4c")]
+    package.targets += [.binaryTarget(name: "skip", url: "https://github.com/vindhyadatascience/skipstone/releases/download/1.9.19-vds.6/skip-linux.zip", checksum: "117fad82247817fbaf248dd0f9e21cdaa44a0fe8f1864844000070fff1982fe3")]
     #else
-    package.dependencies += [.package(url: "https://github.com/vindhyadatascience/skipstone.git", revision: "ec9bad48a4153314236d6cd77636fa3c010bcdcf")]
+    package.dependencies += [.package(url: "https://github.com/vindhyadatascience/skipstone.git", revision: "26889fcfdb16a6b2542e88b29ecb949f6b03fbd3")]
     package.targets += [.executableTarget(name: "skip", dependencies: [.product(name: "SkipBuild", package: "skipstone")])]
     #endif
 }
