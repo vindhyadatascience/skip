@@ -1,3 +1,13 @@
+## Vindhya Data Science fork
+
+This is Vindhya Data Science's public fork of [skiptools/skip](https://github.com/skiptools/skip).
+Its `vds/<version>` branches change only the `skip` binary target, which points at our
+[skipstone](https://github.com/vindhyadatascience/skipstone) release (corresponding AGPL source at
+the matching tag). Releases are tagged `<version>-vds.N`, a SemVer prerelease, so each is a
+distinct version. The older `+vds.N` tags are kept, but SwiftPM ignores build metadata, so to it
+they are the same version as the upstream tag. Consumers mirror skiptools/skip to this fork and pin
+it to an exact revision in their root package and lockfile.
+
 <p align="center">
   <a href="https://skip.dev">
     <img src="https://assets.skip.dev/images/skipicon.svg" alt="Skip" height="80">
